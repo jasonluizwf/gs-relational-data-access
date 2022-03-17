@@ -13,19 +13,24 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /*
-@SpringBootApplication é uma anotação de conveniência que adiciona todos os itens a seguir:
+	@SpringBootApplication é uma anotação de conveniência que adiciona todos os itens a seguir:
 
-@Configuration: marca a classe como uma fonte de definições de bean para o contexto do aplicativo.
+	@Configuration: marca a classe como uma fonte de definições de bean para o contexto do aplicativo.
 
-@EnableAutoConfiguration: diz ao Spring Boot para começar a adicionar beans,
-com base nas configurações do caminho de classe, outros beans e várias configurações de propriedade.
+	@EnableAutoConfiguration: diz ao Spring Boot para começar a adicionar beans,
+	com base nas configurações do caminho de classe, outros beans e várias configurações de propriedade.
 
-@ComponentScan: diz ao Spring para procurar outros componentes, configurações e serviços no
-com.example.relationaldataaccesspacote. Neste caso, não há.
+	@ComponentScan: diz ao Spring para procurar outros componentes, configurações e serviços no
+	com.example.relationaldataaccesspacote. Neste caso, não há.
  */
 
 @SpringBootApplication
 public class RelationalDataAccessApplication implements CommandLineRunner {
+	/*
+	Esta Applicationclasse implementa o Spring Boot's CommandLineRunner,
+	o que significa que ele executará o run()método depois que o contexto
+	do aplicativo for carregado.
+ */
 
 	private static final Logger log =
 			LoggerFactory.getLogger(RelationalDataAccessApplication.class);
@@ -34,6 +39,11 @@ public class RelationalDataAccessApplication implements CommandLineRunner {
 		SpringApplication.run(RelationalDataAccessApplication.class, args);
 	}
 
+	/*
+		O Spring Boot suporta H2 (um mecanismo de banco de dados relacional na memória) e cria automaticamente uma conexão.
+		Como usamos spring-jdbc, o Spring Boot cria automaticamente um arquivo JdbcTemplate. O campo @Autowired JdbcTemplate
+		o carrega automaticamente e o disponibiliza.
+	 */
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 
